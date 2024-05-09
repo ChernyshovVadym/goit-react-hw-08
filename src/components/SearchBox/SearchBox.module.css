@@ -1,0 +1,18 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 500px;
+    margin-left: 42px;
+
+}
+.input {
+    padding: 8px;
+    border: 1px solid black;
+    outline: none;
+}
+
+.input:focus {
+    border-color: blue;
+    padding: 8px;
+}
