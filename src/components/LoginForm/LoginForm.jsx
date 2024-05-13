@@ -1,11 +1,10 @@
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useId } from "react";
-
-import css from "./ContactForm.module.css";
+import { login } from "../../redux/auth/operations";
+import css from "./LoginForm.module.css";
 
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/contactsOps";
 import iziToast from "izitoast";
 
 const validationSchema = Yup.object().shape({
