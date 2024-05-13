@@ -2,10 +2,10 @@ import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useId } from "react";
 
-import css from "./ContactForm.module.css";
+import css from "./RegistrationForm.module.css";
 
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
+import { register } from "../../redux/contactsOps";
 import iziToast from "izitoast";
 
 const validationSchema = Yup.object().shape({
@@ -22,13 +22,20 @@ const validationSchema = Yup.object().shape({
 });
 const initionValus = {
   name: "",
-  number: "",
+  email: "",
+  password: "",
 };
-const ContactForm = () => {
+const RegistorForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact({ name: values.name, number: values.number }))
+    dispatch(
+      register({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      })
+    )
       .unwrap()
       .then(() => {
         iziToast.success({
@@ -44,8 +51,10 @@ const ContactForm = () => {
       });
     actions.resetForm();
   };
+
   const nameFieldId = useId();
-  const numberFieldId = useId();
+  const emailFieldId = useId();
+  const passwordFieldId = useId();
 
   return (
     <Formik
@@ -60,26 +69,36 @@ const ContactForm = () => {
           id={nameFieldId}
           name="name"
           placeholder="Jane"
-          type="text"
+          type="name"
         />
         <ErrorMessage name="name" as="span" />
 
-        <label htmlFor={numberFieldId}>Number</label>
+        <label htmlFor={emailFieldId}>Email</label>
         <Field
           className={css.field}
-          id={numberFieldId}
-          name="number"
-          placeholder="380678377445"
-          type="text"
+          id={emailFieldId}
+          name="email"
+          placeholder="Jane"
+          type="email"
         />
-        <ErrorMessage name="number" as="span" />
+        <ErrorMessage name="email" as="span" />
+
+        <label htmlFor={passwordFieldId}>Password</label>
+        <Field
+          className={css.field}
+          id={passwordFieldId}
+          name="Password"
+          placeholder="380678377445"
+          type="password"
+        />
+        <ErrorMessage name="password" as="span" />
 
         <button className={css.btn} type="submit">
-          Add Contact
+          Register
         </button>
       </Form>
     </Formik>
   );
 };
 
-export default ContactForm;
+export default RegistorForm;

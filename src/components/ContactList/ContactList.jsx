@@ -9,9 +9,9 @@ const ContactList = () => {
   const visibleContacts = useSelector(selectFilteredContacts);
   return (
     <ul className={css.list}>
-      {visibleContacts.map((contact) => (
-        <li className={css.item} key={contact.id}>
-          <Contact contact={contact} />
+      {visibleContacts.map(({ name, number, id }) => (
+        <li className={css.item} key={id}>
+          <Contact name={name} number={number} id={id} />
         </li>
       ))}
     </ul>

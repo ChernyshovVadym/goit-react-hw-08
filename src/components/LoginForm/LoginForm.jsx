@@ -5,7 +5,7 @@ import { useId } from "react";
 import css from "./ContactForm.module.css";
 
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
+import { login } from "../../redux/contactsOps";
 import iziToast from "izitoast";
 
 const validationSchema = Yup.object().shape({
@@ -21,14 +21,14 @@ const validationSchema = Yup.object().shape({
     .required("required"),
 });
 const initionValus = {
-  name: "",
-  number: "",
+  email: "",
+  password: "",
 };
-const ContactForm = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact({ name: values.name, number: values.number }))
+    dispatch(login({ email: values.email, password: values.password }))
       .unwrap()
       .then(() => {
         iziToast.success({
@@ -44,8 +44,8 @@ const ContactForm = () => {
       });
     actions.resetForm();
   };
-  const nameFieldId = useId();
-  const numberFieldId = useId();
+  const emailFieldId = useId();
+  const passwordFieldId = useId();
 
   return (
     <Formik
@@ -54,20 +54,20 @@ const ContactForm = () => {
       validationSchema={validationSchema}
     >
       <Form className={css.form}>
-        <label htmlFor={nameFieldId}>Name</label>
+        <label htmlFor={emailFieldId}>Email</label>
         <Field
           className={css.field}
-          id={nameFieldId}
+          id={emailFieldId}
           name="name"
           placeholder="Jane"
           type="text"
         />
         <ErrorMessage name="name" as="span" />
 
-        <label htmlFor={numberFieldId}>Number</label>
+        <label htmlFor={passwordFieldId}>Password</label>
         <Field
           className={css.field}
-          id={numberFieldId}
+          id={passwordFieldId}
           name="number"
           placeholder="380678377445"
           type="text"
@@ -75,11 +75,11 @@ const ContactForm = () => {
         <ErrorMessage name="number" as="span" />
 
         <button className={css.btn} type="submit">
-          Add Contact
+          Log In
         </button>
       </Form>
     </Formik>
   );
 };
 
-export default ContactForm;
+export default LoginForm;
