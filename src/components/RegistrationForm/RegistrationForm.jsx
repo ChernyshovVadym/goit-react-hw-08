@@ -1,4 +1,4 @@
-// import * as Yup from "yup";
+import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useId } from "react";
 import { register } from "../../redux/auth/operations";
@@ -8,23 +8,23 @@ import { useDispatch } from "react-redux";
 
 import iziToast from "izitoast";
 
-// const validationSchema = Yup.object().shape({
-//   name: Yup.string()
-//     .trim()
-//     .min(5, "too short")
-//     .max(50, "too long")
-//     .required("required"),
-//   email: Yup.string()
-//     .trim()
-//     .min(5, "too short")
-//     .max(50, "too long")
-//     .required("required"),
-//   password: Yup.string()
-//     .trim()
-//     .min(7, "too short")
-//     .max(50, "too long")
-//     .required("required"),
-// });
+const validationSchema = Yup.object().shape({
+  name: Yup.string()
+    .trim()
+    .min(5, "too short")
+    .max(50, "too long")
+    .required("required"),
+  email: Yup.string()
+    .trim()
+    .min(5, "too short")
+    .max(50, "too long")
+    .required("required"),
+  password: Yup.string()
+    .trim()
+    .min(7, "too short")
+    .max(50, "too long")
+    .required("required"),
+});
 const initialValues = {
   name: "",
   email: "",
@@ -65,7 +65,7 @@ const RegistorForm = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      // validationSchema={validationSchema}
+      validationSchema={validationSchema}
     >
       <Form className={css.form}>
         <label htmlFor={nameFieldId}>Name</label>
