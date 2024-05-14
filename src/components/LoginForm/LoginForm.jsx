@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape({
     .max(50, "too long")
     .required("required"),
 });
-const initionValus = {
+const initialValues = {
   email: "",
   password: "",
 };
@@ -48,7 +48,7 @@ const LoginForm = () => {
 
   return (
     <Formik
-      initialValues={initionValus}
+      initialValues={initialValues}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
@@ -57,21 +57,19 @@ const LoginForm = () => {
         <Field
           className={css.field}
           id={emailFieldId}
-          name="name"
-          placeholder="Jane"
-          type="text"
+          name="email"
+          type="email"
         />
-        <ErrorMessage name="name" as="span" />
+        <ErrorMessage name="email" as="span" />
 
         <label htmlFor={passwordFieldId}>Password</label>
         <Field
           className={css.field}
           id={passwordFieldId}
-          name="number"
-          placeholder="380678377445"
+          name="password"
           type="text"
         />
-        <ErrorMessage name="number" as="span" />
+        <ErrorMessage name="password" as="span" />
 
         <button className={css.btn} type="submit">
           Log In

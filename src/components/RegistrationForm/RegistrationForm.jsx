@@ -1,4 +1,4 @@
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useId } from "react";
 import { register } from "../../redux/auth/operations";
@@ -8,19 +8,24 @@ import { useDispatch } from "react-redux";
 
 import iziToast from "izitoast";
 
-const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .trim()
-    .min(3, "too short")
-    .max(50, "too long")
-    .required("required"),
-  number: Yup.string()
-    .trim()
-    .min(3, "too short")
-    .max(50, "too long")
-    .required("required"),
-});
-const initionValus = {
+// const validationSchema = Yup.object().shape({
+//   name: Yup.string()
+//     .trim()
+//     .min(5, "too short")
+//     .max(50, "too long")
+//     .required("required"),
+//   email: Yup.string()
+//     .trim()
+//     .min(5, "too short")
+//     .max(50, "too long")
+//     .required("required"),
+//   password: Yup.string()
+//     .trim()
+//     .min(7, "too short")
+//     .max(50, "too long")
+//     .required("required"),
+// });
+const initialValues = {
   name: "",
   email: "",
   password: "",
@@ -58,19 +63,13 @@ const RegistorForm = () => {
 
   return (
     <Formik
-      initialValues={initionValus}
+      initialValues={initialValues}
       onSubmit={handleSubmit}
-      validationSchema={validationSchema}
+      // validationSchema={validationSchema}
     >
       <Form className={css.form}>
         <label htmlFor={nameFieldId}>Name</label>
-        <Field
-          className={css.field}
-          id={nameFieldId}
-          name="name"
-          placeholder="Jane"
-          type="name"
-        />
+        <Field className={css.field} id={nameFieldId} name="name" type="name" />
         <ErrorMessage name="name" as="span" />
 
         <label htmlFor={emailFieldId}>Email</label>
@@ -78,7 +77,6 @@ const RegistorForm = () => {
           className={css.field}
           id={emailFieldId}
           name="email"
-          placeholder="Jane"
           type="email"
         />
         <ErrorMessage name="email" as="span" />
@@ -88,8 +86,7 @@ const RegistorForm = () => {
           className={css.field}
           id={passwordFieldId}
           name="Password"
-          placeholder="380678377445"
-          type="password"
+          type="text"
         />
         <ErrorMessage name="password" as="span" />
 
