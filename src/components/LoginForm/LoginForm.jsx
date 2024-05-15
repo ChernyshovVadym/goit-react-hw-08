@@ -8,14 +8,14 @@ import { useDispatch } from "react-redux";
 import iziToast from "izitoast";
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string()
+  email: Yup.string()
     .trim()
-    .min(3, "too short")
+    .min(8, "too short")
     .max(50, "too long")
     .required("required"),
-  number: Yup.string()
+  password: Yup.string()
     .trim()
-    .min(3, "too short")
+    .min(8, "too short")
     .max(50, "too long")
     .required("required"),
 });

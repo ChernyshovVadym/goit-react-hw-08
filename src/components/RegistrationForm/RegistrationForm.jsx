@@ -16,12 +16,12 @@ const validationSchema = Yup.object().shape({
     .required("required"),
   email: Yup.string()
     .trim()
-    .min(5, "too short")
+    .min(8, "too short")
     .max(50, "too long")
     .required("required"),
   password: Yup.string()
     .trim()
-    .min(7, "too short")
+    .min(8, "too short")
     .max(50, "too long")
     .required("required"),
 });
@@ -45,13 +45,13 @@ const RegistorForm = () => {
       .then(() => {
         iziToast.success({
           position: "topRight",
-          message: "Сontact add Successfully!",
+          message: "Register Successfully!",
         });
       })
       .catch(() => {
         iziToast.error({
           position: "topRight",
-          message: "Incorrect, your contact has not been added.",
+          message: "Incorrect...",
         });
       });
     actions.resetForm();
@@ -85,7 +85,7 @@ const RegistorForm = () => {
         <Field
           className={css.field}
           id={passwordFieldId}
-          name="Password"
+          name="password"
           type="text"
         />
         <ErrorMessage name="password" as="span" />
